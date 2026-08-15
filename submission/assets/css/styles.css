@@ -17,3 +17,34 @@ section{padding:36px 0}.section-title{margin:0 0 8px;color:var(--navy);font-size
 footer{background:#071e43;color:#d5e9fb;padding:30px 0}.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:20px}.footer-grid strong{color:#fff}.footer-note{margin-top:20px;padding-top:15px;border-top:1px solid rgba(255,255,255,.12);font-size:.85rem;color:#9bbbd4}
 @media(max-width:960px){.hero-grid,.grid-2,.dashboard-grid,.footer-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.stat-grid{grid-template-columns:1fr 1fr}.sidebar{display:none}.author-row{grid-template-columns:48px 1fr 1fr}.author-row .affiliation{grid-column:2/-1}.author-row .remove-wrap{grid-column:2/-1}.score-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.navlinks a:not(.nav-cta){display:none}.form-grid,.grid-3,.stat-grid,.score-grid{grid-template-columns:1fr}.schedule-row{grid-template-columns:1fr}.timeline-date{border-right:0}.author-row{grid-template-columns:1fr}.author-row .checks,.author-row .affiliation,.author-row .remove-wrap{grid-column:auto}.hero{padding-top:54px}.hero h1{font-size:2.55rem}.org-logo{width:82px;height:82px}.panel{padding:18px}}
+
+
+/* 個資使用說明勾選框：避免受到一般文字輸入框 width:100% 規則影響 */
+.privacy-consent {
+  margin-top:2px;
+}
+.privacy-consent label {
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  gap:10px;
+  width:100%;
+  line-height:1.5;
+  cursor:pointer;
+}
+.privacy-consent input[type="checkbox"] {
+  width:18px !important;
+  height:18px;
+  min-width:18px;
+  flex:0 0 18px;
+  margin:3px 0 0 0;
+  padding:0;
+  border-radius:4px;
+  cursor:pointer;
+  accent-color:var(--blue);
+  box-shadow:none;
+}
+.privacy-consent span {
+  display:block;
+  flex:1;
+}
