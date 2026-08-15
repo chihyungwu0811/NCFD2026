@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chihyungwu0811.github.io/NCFD2026/sitemap.xml
