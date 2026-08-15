@@ -82,7 +82,7 @@
     .footer-title{color:#fff;margin:0 0 10px} .footer-small{font-size:.95rem;color:rgba(255,255,255,.72)}
     .copyright{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:.9rem;color:rgba(255,255,255,.6)}
     @media(max-width:1080px){.hero-inner,.grid-2,.leisure,.footer-grid,.organizer-grid{grid-template-columns:1fr}.quick-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:720px){#submission-system .cta-box{grid-template-columns:1fr !important;}.menu{display:none}.quick-grid,.highlight-list,.topic-grid{grid-template-columns:1fr}.timeline-item{grid-template-columns:1fr}.timeline-date{border-right:0;border-bottom:2px dashed #c8dff5;padding-bottom:8px}}
+    @media(max-width:720px){.menu{display:none}.quick-grid,.highlight-list,.topic-grid{grid-template-columns:1fr}.timeline-item{grid-template-columns:1fr}.timeline-date{border-right:0;border-bottom:2px dashed #c8dff5;padding-bottom:8px}}
   
     /* ===== CFD flyer-inspired background refinement ===== */
     body {
@@ -164,13 +164,84 @@
       box-shadow:0 12px 24px rgba(11,47,107,.24);
     }
 
-  </style>
+  
+    /* ===== 投稿資源下載 ===== */
+    .resource-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+    .resource-card {
+      position:relative;
+      overflow:hidden;
+      background:rgba(255,255,255,.96);
+      border:1px solid #dce9f7;
+      border-radius:22px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .resource-card::after {
+      content:"";
+      position:absolute;
+      width:130px;height:130px;
+      right:-48px;top:-48px;
+      border-radius:50%;
+      border:18px solid rgba(31,162,207,.09);
+    }
+    .resource-icon {
+      width:52px;height:52px;
+      display:grid;place-items:center;
+      border-radius:15px;
+      margin-bottom:14px;
+      background:linear-gradient(135deg,#e4f6ff,#d9f3f6);
+      color:var(--navy);
+      font-size:1.45rem;
+      font-weight:900;
+    }
+    .resource-card h3 {margin:0 0 7px;color:var(--navy);font-size:1.12rem;}
+    .resource-card p {margin:0 0 17px;color:var(--muted);font-size:.95rem;}
+    .resource-actions {display:flex;flex-wrap:wrap;gap:10px;}
+    .download-btn {
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 15px;border-radius:999px;
+      background:linear-gradient(135deg,#0b4b95,#1296c7);
+      color:#fff;font-weight:800;
+      box-shadow:0 7px 18px rgba(11,75,149,.16);
+    }
+    .preview-btn {
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 15px;border-radius:999px;
+      border:1px solid #bfd9ed;background:#f4fbff;
+      color:var(--navy);font-weight:800;
+    }
+    .submission-banner {
+      margin-top:22px;
+      padding:22px;
+      border-radius:22px;
+      background:linear-gradient(120deg,#0b2f6b,#0c5b9f 55%,#0c88ad);
+      color:#fff;
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:22px;
+    }
+    .submission-banner h3 {margin:0 0 6px;color:#fff;}
+    .submission-banner p {margin:0;color:rgba(255,255,255,.88);}
+    @media(max-width:900px){
+      .resource-grid{grid-template-columns:1fr;}
+      .submission-banner{display:block;}
+      .submission-banner .btn{margin-top:16px;}
+    }
+
+</style>
 </head>
 <body>
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand"><strong>2026 全國計算流體力學會議</strong><span>National Computational Fluid Dynamics Conference</span></div>
-      <div class="menu"><a href="#about">會議資訊</a><a href="#topics">徵稿主題</a><a href="submission/login.html">投稿專區</a><a href="#schedule">重要時程</a><a href="#venue">會場與旅遊</a><a href="#organizers">主辦單位</a></div>
+      <div class="menu"><a href="#about">會議資訊</a><a href="#topics">徵稿主題</a><a href="#resources">投稿資源</a><a href="submission/auth.html">投稿專區</a><a href="#schedule">重要時程</a><a href="#venue">會場與旅遊</a><a href="#organizers">主辦單位</a></div>
     </div>
   </nav>
 
@@ -187,9 +258,9 @@
           <div class="chip">🌊 墾丁周邊・學術 × 休閒</div>
         </div>
         <div class="actions">
-  <a class="btn btn-primary" href="submission/login.html">📝 進入投稿系統</a>
-          <a class="btn btn-secondary" href="#schedule">查看重要時程</a>
-  <a class="btn btn-secondary" href="#topics">查看徵稿主題</a>
+  <a class="btn btn-primary" href="submission/auth.html">📝 進入投稿系統</a>
+  <a class="btn btn-secondary" href="#resources">⬇ 下載投稿範本</a>
+  <a class="btn btn-secondary" href="#schedule">查看重要時程</a>
   <a class="btn btn-secondary" href="mailto:NCFD2026@proton.me?subject=NCFD2026%20%E6%9C%83%E8%AD%B0%E8%A9%A2%E5%95%8F">✉ 聯絡我們</a>
 </div>
       </div>
@@ -204,7 +275,7 @@
     <div class="quick-grid">
       <div class="quick-card"><div class="icon">📅</div><h3>會議日期</h3><p>2026/12/11（五）– 2026/12/12（六）</p></div>
       <div class="quick-card"><div class="icon">📍</div><h3>會議地點</h3><p>國立海洋生物博物館行政大樓國際會議廳</p></div>
-      <div class="quick-card"><div class="icon">📝</div><h3>徵稿階段</h3><p>1st Call for Papers</p></div>
+      <a class="quick-card" href="submission/auth.html"><div class="icon">📝</div><h3>投稿系統</h3><p>投稿 / 登入 / 稿件管理</p></a>
       <div class="quick-card"><div class="icon">🤝</div><h3>主辦單位</h3><p>中華民國航空太空學會、國立成功大學航空太空工程學系</p></div>
     </div>
   </div>
@@ -236,6 +307,56 @@
     </div>
   </section>
 
+  
+  <section id="resources">
+    <div class="container">
+      <h2 class="section-title">投稿資源下載</h2>
+      <p class="section-desc">
+        請投稿者先下載摘要與海報範本，依指定格式完成後，再進入投稿系統上傳。
+        摘要正式投稿請轉存為 PDF；海報範本為 A1 直式 PowerPoint，可直接編輯。
+      </p>
+
+      <div class="resource-grid">
+        <div class="resource-card">
+          <div class="resource-icon">W</div>
+          <h3>摘要 Word 範本</h3>
+          <p>A4 一頁式摘要格式，已包含會議頁首、中英文題目、作者、單位、摘要與關鍵字欄位。</p>
+          <div class="resource-actions">
+            <a class="download-btn" href="templates/NCFD2026_Abstract_Template.docx" download>⬇ 下載 DOCX</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon">PDF</div>
+          <h3>摘要格式 PDF 預覽</h3>
+          <p>投稿前可先查看正式摘要範本的版面配置，確認頁首、字級與內容位置。</p>
+          <div class="resource-actions">
+            <a class="preview-btn" href="templates/NCFD2026_Abstract_Template_Preview.pdf" target="_blank" rel="noopener">👁 開啟 PDF 預覽</a>
+            <a class="download-btn" href="templates/NCFD2026_Abstract_Template_Preview.pdf" download>⬇ 下載 PDF</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon">P</div>
+          <h3>A1 海報 PPTX 範本</h3>
+          <p>A1 直式 PowerPoint 海報範本，採 NCFD2026 藍白 CFD／南國海岸視覺風格，可直接替換內容。</p>
+          <div class="resource-actions">
+            <a class="download-btn" href="templates/NCFD2026_A1_Poster_Template.pptx" download>⬇ 下載 PPTX</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="submission-banner">
+        <div>
+          <h3>完成摘要後，即可進入 NCFD2026 投稿系統</h3>
+          <p>建立投稿帳號、填寫稿件資訊與作者資料，並上傳完成的 PDF 摘要。</p>
+        </div>
+        <a class="btn btn-primary" href="submission/auth.html">📝 前往投稿系統</a>
+      </div>
+    </div>
+  </section>
+
+
   <section id="schedule">
     <div class="container">
       <h2 class="section-title">研討會重要時程及註冊費</h2>
@@ -262,37 +383,6 @@
       </div>
     </div>
   </section>
-
-  
-  <section id="submission-system">
-    <div class="container">
-      <div class="cta-box" style="display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;">
-        <div>
-          <h3>NCFD2026 投稿系統</h3>
-          <p>
-            投稿者可建立帳號、填寫中英文題目與摘要、管理共同作者並上傳 PDF。
-            投稿截止日前可登入查看及修改稿件；後續審查與錄取資訊亦將由系統管理。
-          </p>
-          <div class="actions">
-            <a class="btn btn-primary" href="submission/login.html">📝 投稿者登入 / 建立帳號</a>
-            <a class="btn btn-secondary" href="submission/dashboard.html">我的投稿</a>
-            <a class="btn btn-secondary" href="mailto:NCFD2026@proton.me?subject=NCFD2026%20%E6%8A%95%E7%A8%BF%E7%B3%BB%E7%B5%B1%E8%A9%A2%E5%95%8F">✉ 投稿問題聯絡我們</a>
-          </div>
-        </div>
-        <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:20px;">
-          <strong style="display:block;margin-bottom:10px;">投稿內容</strong>
-          <div style="color:rgba(255,255,255,.9);font-size:.95rem;">
-            ・四大徵稿主題<br>
-            ・中英文題目與摘要<br>
-            ・共同作者資料<br>
-            ・PDF 摘要檔案上傳<br>
-            ・投稿編號與狀態查詢
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
 
   <section id="organizers">
     <div class="container">
