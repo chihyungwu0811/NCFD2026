@@ -50,7 +50,7 @@ const NCFD = {
     let extras='';
     if(roles.includes('reviewer')||roles.includes('admin')||roles.includes('chair')) extras+='<a href="reviewer.html">審查</a>';
     if(roles.includes('admin')||roles.includes('chair')) extras+='<a href="admin.html">管理</a>';
-    nav.innerHTML=`${extras}<a href="dashboard.html">我的投稿</a><button class="btn btn-sm btn-outline" data-logout>登出</button>`;
+    nav.innerHTML=`${extras}<a href="dashboard.html">我的投稿</a><a href="../registration/dashboard.html">我的註冊</a><button class="btn btn-sm btn-outline" data-logout>登出</button>`;
     const b=nav.querySelector('[data-logout]'); if(b) b.addEventListener('click',async()=>{await this.db.auth.signOut();location.href='index.html';});
   },
   statusBadge(status){ return `<span class="status status-${this.escape(status)}">${this.escape(this.statusLabels[status]||status)}</span>`; },
