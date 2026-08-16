@@ -18,7 +18,7 @@ const REG = {
     faculty_researcher:'教師／研究人員',industry:'產業人士',student:'學生',other:'其他'
   },
   paymentMethodLabels:{
-    bank_transfer:'銀行匯款',postal_giro:'郵政劃撥'
+    bank_transfer:'郵局帳戶轉帳',postal_giro:'郵政劃撥'
   },
   el(sel,root=document){return root.querySelector(sel)},
   els(sel,root=document){return [...root.querySelectorAll(sel)]},
