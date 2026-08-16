@@ -17,6 +17,9 @@ const REG = {
   categoryLabels:{
     faculty_researcher:'教師／研究人員',industry:'產業人士',student:'學生',other:'其他'
   },
+  paymentMethodLabels:{
+    bank_transfer:'銀行匯款',postal_giro:'郵政劃撥'
+  },
   el(sel,root=document){return root.querySelector(sel)},
   els(sel,root=document){return [...root.querySelectorAll(sel)]},
   escape(s=''){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))},
@@ -57,7 +60,9 @@ const REG = {
     const u=await this.user();
     if(!u){nav.innerHTML='<a href="../submission/auth.html">論文投稿</a><a class="nav-cta" href="auth.html">註冊 / 登入</a>';return}
     const roles=await this.roles();
-    let extra=roles.some(x=>['chair','admin'].includes(x))?'<a href="admin.html">註冊管理</a>':'';
+    let extra=roles.some(x=>['chair','admin'].includes(x))
+      ? '<a href="../submission/admin.html">投稿管理</a><a href="admin.html">註冊管理</a>'
+      : '';
     nav.innerHTML=`<a href="../index.html">會議首頁</a><a href="../submission/dashboard.html">我的投稿</a>${extra}<a href="dashboard.html">我的註冊</a><button class="btn btn-sm btn-outline" data-reg-logout>登出</button>`;
     this.el('[data-reg-logout]')?.addEventListener('click',async()=>{await this.db.auth.signOut();location.href='index.html'})
   }
