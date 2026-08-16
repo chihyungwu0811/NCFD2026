@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>付款證明｜NCFD2026</title>
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="assets/css/registration.css">
+
+</head>
+<body>
+<nav class="sitebar"><div class="container sitebar-inner">
+<a class="brand" href="../index.html">2026 全國計算流體力學會議<small>National Computational Fluid Dynamics Conference</small></a>
+<div class="navlinks" data-reg-nav></div>
+</div></nav>
+
+<header class="page-head"><div class="container"><h1>上傳付款證明</h1><p>支援銀行匯款或郵政劃撥；付款證明由主辦單位人工審核。</p></div></header>
+<main class="content"><div class="container"><div data-flash></div><div class="grid-2">
+<div><div id="reg-summary" class="summary-box"></div><div id="payment-instructions" class="payment-instructions" style="margin-top:18px"></div></div>
+<form id="payment-form" class="panel">
+<h2>付款資料</h2>
+<div class="form-grid">
+<div class="field full"><label>付款方式 *</label><select name="payment_method" required><option value="bank_transfer">銀行匯款</option><option value="postal_giro">郵政劃撥</option></select></div>
+<div class="field"><label>付款日期 *</label><input name="payment_date" type="date" required></div>
+<div class="field"><label>匯款帳號末五碼／劃撥識別資訊</label><input name="reference_last5" maxlength="20"></div>
+<div class="field full"><label>匯款／劃撥收據照片或付款證明 *</label><div class="upload-box"><input name="proof" type="file" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required><div class="help">JPG、PNG 或 PDF，最大 10 MB。請確保付款日期、金額與識別資訊清楚可辨。</div></div><div id="current-proof" class="help"></div></div>
+</div>
+<div class="notice warn">付款證明上傳後狀態為「待審核」。只有主辦單位確認款項入帳後，才會顯示「已確認付款」。</div>
+<div class="form-actions"><a class="btn btn-outline" href="dashboard.html">稍後再處理</a><button class="btn btn-blue" type="submit">上傳付款證明</button></div>
+</form></div></div></main>
+
+<footer><div class="container"><strong>NCFD2026 會議註冊系統</strong><div class="footer-note">聯絡信箱：<a href="mailto:NCFD2026@proton.me">NCFD2026@proton.me</a>｜<a href="../index.html">會議首頁</a></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../submission/assets/js/config.js"></script>
+<script src="../submission/assets/js/client.js"></script>
+<script src="assets/js/registration-common.js"></script>
+<script src="assets/js/payment.js"></script>
+</body></html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>註冊管理｜NCFD2026</title>
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="assets/css/registration.css">
+
+</head>
+<body>
+<nav class="sitebar"><div class="container sitebar-inner">
+<a class="brand" href="../index.html">2026 全國計算流體力學會議<small>National Computational Fluid Dynamics Conference</small></a>
+<div class="navlinks" data-reg-nav></div>
+</div></nav>
+
+<header class="page-head"><div class="container"><h1>會議註冊管理後台</h1><p>註冊名單、付款證明人工審核、匯款／劃撥資訊與 CSV 匯出。</p></div></header>
+<main class="content"><div class="container"><div data-flash></div><div id="stats" class="stat-grid"></div>
+<div class="panel" style="margin-bottom:20px"><h2>註冊與付款設定</h2><form id="settings-form" class="form-grid">
+<div class="field"><label>開放時間</label><input name="registration_open_at" type="datetime-local" required></div><div class="field"><label>早鳥截止</label><input name="early_bird_deadline" type="datetime-local" required></div>
+<div class="field"><label>一般報名截止</label><input name="online_registration_deadline" type="datetime-local" required></div><div class="field"><label class="checkbox-row"><input name="registrations_enabled" type="checkbox" value="1"><span>啟用會議註冊</span></label></div>
+<div class="field"><label>銀行名稱</label><input name="bank_name"></div><div class="field"><label>銀行代碼</label><input name="bank_code"></div>
+<div class="field"><label>銀行帳號</label><input name="bank_account"></div><div class="field"><label>戶名</label><input name="bank_account_name"></div>
+<div class="field"><label>郵政劃撥帳號</label><input name="postal_giro_number"></div><div class="field"><label>劃撥戶名</label><input name="postal_giro_name"></div>
+<div class="field full"><label>付款說明</label><textarea name="payment_note" placeholder="例如：匯款後請保留收據，並於本系統上傳付款證明。"></textarea></div>
+<div class="field full"><button class="btn btn-blue" type="submit">儲存設定</button></div>
+</form></div>
+<div class="panel"><div class="inline" style="justify-content:space-between"><h2 style="margin:0">全部註冊</h2><button id="export-csv" class="btn btn-outline btn-sm">匯出 CSV</button></div>
+<div class="inline" style="margin:15px 0"><input id="search" style="flex:1;padding:10px;border:1px solid #bfd3e5;border-radius:10px" placeholder="搜尋註冊編號、姓名、Email、單位、稿件編號"><select id="status-filter" style="padding:10px;border:1px solid #bfd3e5;border-radius:10px"><option value="">全部狀態</option><option value="pending_payment">待付款</option><option value="payment_submitted">付款證明待審核</option><option value="paid">已確認付款</option><option value="reupload_required">需補件</option></select></div>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>註冊編號</th><th>與會者</th><th>類型／稿件</th><th>應繳</th><th>狀態</th><th>付款證明</th><th>審核</th></tr></thead><tbody id="rows"></tbody></table></div>
+</div></div></main>
+
+<footer><div class="container"><strong>NCFD2026 會議註冊系統</strong><div class="footer-note">聯絡信箱：<a href="mailto:NCFD2026@proton.me">NCFD2026@proton.me</a>｜<a href="../index.html">會議首頁</a></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../submission/assets/js/config.js"></script>
+<script src="../submission/assets/js/client.js"></script>
+<script src="assets/js/registration-common.js"></script>
+<script src="assets/js/admin.js"></script>
+</body></html>

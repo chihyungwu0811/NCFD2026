@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>建立會議註冊｜NCFD2026</title>
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="assets/css/registration.css">
+
+</head>
+<body>
+<nav class="sitebar"><div class="container sitebar-inner">
+<a class="brand" href="../index.html">2026 全國計算流體力學會議<small>National Computational Fluid Dynamics Conference</small></a>
+<div class="navlinks" data-reg-nav></div>
+</div></nav>
+
+<header class="page-head"><div class="container"><h1>建立會議註冊</h1><p>請依實際身份填寫；費用由伺服器依時程與稿件資料計算。</p></div></header>
+<main class="content"><div class="container"><div data-flash></div><div id="already" class="notice warn hidden"></div>
+<form id="registration-form" class="panel">
+<div class="form-grid">
+<div class="field full"><label>參加身份 *</label><select name="registration_type" required><option value="">請選擇</option><option value="paper_primary_author">投稿稿件：使用該篇稿件包含的 1 位作者註冊資格</option><option value="paper_additional_author">同篇稿件第 2 位及後續作者</option><option value="general_attendee">無投稿的一般與會者</option></select></div>
+<div id="submission-wrap" class="field full hidden"><label>Submission ID *</label><input name="submission_number" placeholder="例如 NCFD2026-0038"><span class="help">系統會確認目前登入 Email 是否出現在該稿件作者名單中。</span></div>
+<div class="field full"><div id="fee-quote" class="summary-box">請先選擇參加身份。</div></div>
+<div class="field"><label>中文姓名 *</label><input name="name_zh" required></div><div class="field"><label>英文姓名</label><input name="name_en"></div>
+<div class="field full"><label>Email</label><input name="email" type="email" disabled></div>
+<div class="field"><label>服務單位 *</label><input name="affiliation" required></div><div class="field"><label>職稱</label><input name="job_title"></div>
+<div class="field"><label>手機／聯絡電話 *</label><input name="phone" required></div>
+<div class="field"><label>身份 *</label><select name="participant_category"><option value="faculty_researcher">教師／研究人員</option><option value="industry">產業人士</option><option value="student">學生</option><option value="other">其他</option></select><span class="help">學生與一般與會者註冊費沒有區別。</span></div>
+<div class="field full"><label>參加日期 *</label><label class="checkbox-row"><input type="checkbox" name="attend_day1" value="1" checked><span>2026/12/11（五）</span></label><label class="checkbox-row"><input type="checkbox" name="attend_day2" value="1" checked><span>2026/12/12（六）</span></label></div>
+<div class="field"><label>飲食需求</label><input name="dietary_requirement" value="一般" placeholder="一般／素食／其他"></div>
+<div class="field"><label>陪同親友人數</label><input name="companion_count" type="number" min="0" max="20" value="0"><span class="help">陪同親友免費，僅統計人數，不列入正式註冊名單。</span></div>
+<div class="field"><label>收據抬頭</label><input name="receipt_title"></div><div class="field"><label>統一編號</label><input name="tax_id" inputmode="numeric"></div>
+</div>
+<div class="notice">送出後會取得 <strong>NCFD2026-RXXXX</strong> 註冊編號，接著請完成匯款／郵政劃撥並上傳付款證明。</div>
+<div class="form-actions"><a class="btn btn-outline" href="dashboard.html">取消</a><button class="btn btn-blue" type="submit">建立註冊並前往付款</button></div>
+</form></div></main>
+
+<footer><div class="container"><strong>NCFD2026 會議註冊系統</strong><div class="footer-note">聯絡信箱：<a href="mailto:NCFD2026@proton.me">NCFD2026@proton.me</a>｜<a href="../index.html">會議首頁</a></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../submission/assets/js/config.js"></script>
+<script src="../submission/assets/js/client.js"></script>
+<script src="assets/js/registration-common.js"></script>
+<script src="assets/js/form.js"></script>
+</body></html>
