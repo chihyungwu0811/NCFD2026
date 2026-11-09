@@ -80,10 +80,11 @@ document.addEventListener('DOMContentLoaded',async()=>{
         ? `<button class="btn btn-blue btn-sm" data-paid="${r.id}">確認付款</button>
            <button class="btn btn-danger btn-sm" data-reupload="${r.id}">要求補件</button>`
         : '';
+      const statusControl=`<div class="inline" style="margin-top:6px"><select data-reg-status style="max-width:150px;padding:7px;border:1px solid #bfd3e5;border-radius:8px"><option value="pending_payment" ${r.status==='pending_payment'?'selected':''}>待付款</option><option value="payment_submitted" ${r.status==='payment_submitted'?'selected':''}>付款證明待審核</option><option value="paid" ${r.status==='paid'?'selected':''}>已確認付款</option><option value="reupload_required" ${r.status==='reupload_required'?'selected':''}>需補件</option><option value="cancelled" ${r.status==='cancelled'?'selected':''}>已取消</option></select><button class="btn btn-outline btn-sm" data-reg-apply="${r.id}">套用狀態</button></div>`;
 
       const paymentInfo=p
         ? `<div class="small muted">
-             ${REG.escape(REG.paymentMethodLabels[p.payment_method]||p.payment_method)}
+             ${REG.escape((REG.paymentMethodLabels||{})[p.payment_method]||p.payment_method)}
              ｜付款日 ${REG.escape(p.payment_date||'—')}
              ${p.reference_last5?`｜末碼/識別 ${REG.escape(p.reference_last5)}`:''}
            </div>
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
           <div class="small muted">同行 ${Number(r.companion_count||0)} 人</div>
         </td>
         <td>${proof}${paymentInfo}</td>
-        <td><div class="actions">${review}</div></td>
+        <td><div class="actions">${review}</div>${statusControl}</td>
       </tr>`
     }).join('')||'<tr><td colspan="7" class="muted">沒有符合的資料。</td></tr>';
 
@@ -125,7 +126,14 @@ document.addEventListener('DOMContentLoaded',async()=>{
       }catch(e){REG.toast('無法開啟付款證明：'+e.message,'error')}
     }));
     REG.els('[data-paid]').forEach(b=>b.addEventListener('click',()=>review(b.dataset.paid,'paid')));
-    REG.els('[data-reupload]').forEach(b=>b.addEventListener('click',()=>review(b.dataset.reupload,'reupload_required')))
+    REG.els('[data-reupload]').forEach(b=>b.addEventListener('click',()=>review(b.dataset.reupload,'reupload_required')));
+    REG.els('[data-reg-apply]').forEach(b=>b.addEventListener('click',async()=>{
+      const tr=b.closest('tr'), status=tr.querySelector('[data-reg-status]').value;
+      if(!confirm(`確定將此註冊狀態改為「${REG.statusLabels[status]||status}」？`))return;
+      const note=prompt('管理員備註（可留空）：',''); if(note===null)return;
+      const {error}=await REG.db.rpc('admin_set_registration_status',{p_registration_id:b.dataset.regApply,p_status:status,p_note:note.trim()});
+      if(error)return REG.toast('狀態更新失敗：'+error.message,'error'); REG.toast('註冊狀態已更新。','success'); await load();
+    }))
   }
 
   async function review(id,decision){
@@ -201,7 +209,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
       const flat={
         ...r,
         submission_number:r.submissions?.submission_number||'',
-        payment_method:REG.paymentMethodLabels[p.payment_method]||p.payment_method||'',
+        payment_method:(REG.paymentMethodLabels||{})[p.payment_method]||p.payment_method||'',
         payment_date:p.payment_date||'',
         reference_last5:p.reference_last5||'',
         payment_status:p.status||''

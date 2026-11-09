@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', async()=>{
     NCFD.el('#profile-email').textContent=data.email||user.email;
   }
   async function loadSubmissions(){
-    const {data,error}=await NCFD.db.from('submissions').select('id,submission_number,title_zh,title_en,status,submitted_at,updated_at,current_file_id,topics(name_zh)').order('created_at',{ascending:false});
+    const {data,error}=await NCFD.db.from('submissions')
+      .select('id,submission_number,title_zh,title_en,status,submitted_at,updated_at,current_file_id,topics(name_zh)')
+      .eq('owner_id',user.id)
+      .order('created_at',{ascending:false});
     if(error) return NCFD.toast('讀取投稿失敗：'+error.message,'error');
     const body=NCFD.el('#submission-body'); body.innerHTML='';
     NCFD.el('#stat-total').textContent=data.length;
@@ -18,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
     if(!data.length){ body.innerHTML='<tr><td colspan="6" class="empty">目前尚無投稿。點選「建立新投稿」開始。</td></tr>'; return; }
     for(const s of data){
       const tr=document.createElement('tr');
-      tr.innerHTML=`<td><strong>${NCFD.escape(s.submission_number||'尚未編號')}</strong></td><td>${NCFD.escape(s.title_zh||s.title_en||'未命名')}</td><td>${NCFD.escape(s.topics?.name_zh||'—')}</td><td>${NCFD.statusBadge(s.status)}</td><td>${NCFD.formatDate(s.updated_at)}</td><td class="inline"><a class="btn btn-sm btn-outline" href="submission.html?id=${encodeURIComponent(s.id)}">查看/修改</a><button class="btn btn-sm btn-outline" data-download="${s.id}">PDF</button>${['draft','submitted','revision'].includes(s.status)?`<button class="btn btn-sm btn-danger" data-withdraw="${s.id}">撤稿</button>`:''}</td>`;
+      tr.innerHTML=`<td><strong>${NCFD.escape(s.submission_number||'尚未編號')}</strong></td><td>${NCFD.escape(s.title_zh||s.title_en||'未命名')}</td><td>${NCFD.escape(s.topics?.name_zh||'—')}</td><td>${NCFD.statusBadge(s.status)}</td><td>${NCFD.formatDate(s.updated_at)}</td><td class="inline"><a class="btn btn-sm btn-outline" href="submission.html?id=${encodeURIComponent(s.id)}">查看/修改</a><button class="btn btn-sm btn-outline" data-download="${s.id}">摘要 PDF</button>${['accepted','final_submitted'].includes(s.status)?`<a class="btn btn-sm btn-blue" href="deliverables.html?id=${encodeURIComponent(s.id)}">海報／授權書</a>`:''}${['draft','submitted','revision'].includes(s.status)?`<button class="btn btn-sm btn-danger" data-withdraw="${s.id}">撤稿</button>`:''}</td>`;
       body.appendChild(tr);
     }
     body.querySelectorAll('[data-download]').forEach(b=>b.addEventListener('click',async()=>{

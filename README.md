@@ -1,39 +1,55 @@
-# NCFD2026 付費方式資訊 Patch
+# NCFD2026 2026-11-01 Hotfix
 
-本 Patch 加入：
+本 Patch 同時處理三件事：
 
-## 郵政劃撥
-- 劃撥帳號：19826163
-- 戶名：中華民國航空太空學會袁曉峰
+1. **投稿者中心只顯示自己的投稿**
+   - 即使 Chair/Admin 因 RLS 可以讀全部投稿，「我的投稿」仍強制 `.eq('owner_id', user.id)`。
+   - 全部投稿只有 `投稿管理 admin.html` 顯示。
 
-## 郵局帳戶轉帳
-- 金融機構代碼：700
-- 帳號：0031071 0964176
-- 戶名：中華民國航空太空學會袁曉峰
+2. **會議註冊後台可手動變更註冊狀態**
+   - 可選：待付款、付款證明待審核、已確認付款、需補件、已取消。
+   - 付款證明相關狀態必須已有付款證明，避免把沒有佐證的註冊誤標為已付款。
+   - 每次變更會寫入 audit_logs。
 
-## 付款提醒
-使用劃撥或轉帳時，記得於備註欄填寫會議論文號碼，以利後續查核。
-完成付款後，請將掃描收據或轉帳紀錄於註冊系統中上傳。
+3. **錄取稿件新增海報與授權書上傳**
+   - 海報：PPT / PPTX / PDF，最大 50 MB。
+   - 授權書：PDF / JPG / PNG，最大 10 MB。
+   - 只有稿件 owner 且狀態為 accepted / final_submitted 可以上傳。
+   - Chair/Admin 可在投稿管理後台下載查核。
+   - Reviewer 不會取得這兩份最終文件的存取權。
 
-## 操作
-
-### 1. Supabase
+## Supabase
 先執行：
-`registration/supabase/payment_account_settings.sql`
 
-這樣註冊者的付款頁會自動從 Supabase 顯示正確收款資訊。
+`submission/supabase/NCFD2026_20261101_hotfix.sql`
 
-### 2. GitHub
-覆蓋：
-- `index.html`
-- `registration/index.html`
-- `registration/payment.html`
-- `registration/admin.html`
-- `registration/assets/js/registration-common.js`
+請確認 SQL Editor 右上角為 **Database**。
 
-不要覆蓋：
-- `submission/assets/js/config.js`
+## GitHub
+覆蓋 / 新增：
+
+- `submission/assets/js/dashboard.js`
+- `submission/assets/js/admin.js`
+- `submission/deliverables.html`（新增）
+- `submission/assets/js/deliverables.js`（新增）
 - `registration/assets/js/admin.js`
 
-此 Patch 的 `registration-common.js` 已沿用上一版後台檢查修正版，
-不會移除「投稿管理 / 註冊管理」互通連結。
+不要覆蓋：
+
+- `submission/assets/js/config.js`
+- 首頁 `index.html`
+- 目前已調整好的導覽列 / CSS
+
+## 使用流程
+
+### 投稿者
+錄取後，投稿者中心該稿件會多出 **「海報／授權書」** 按鈕，進入後分別上傳兩份文件。
+
+### 投稿管理員
+投稿管理表格原本「稿件/審查」欄會同時顯示：
+- 摘要 PDF
+- 海報（已上傳時）
+- 授權書（已上傳時）
+
+### 註冊管理員
+註冊後台每一筆資料的「審核」欄會新增 **狀態下拉選單＋套用狀態**。
