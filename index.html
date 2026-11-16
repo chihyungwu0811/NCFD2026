@@ -383,6 +383,91 @@
       box-shadow:0 8px 18px rgba(0,0,0,.13);
     }
 
+
+    /* ===== Dining needs survey alert ===== */
+    .dining-alert{
+      position:relative;
+      z-index:20;
+      background:linear-gradient(90deg,#fff7df 0%,#fff3c3 55%,#ffe6a6 100%);
+      border-bottom:1px solid #f0c66a;
+      box-shadow:0 8px 22px rgba(116,76,0,.12);
+    }
+    .dining-alert-inner{
+      width:min(var(--maxw),calc(100% - 32px));
+      margin:0 auto;
+      min-height:92px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:22px;
+      padding:16px 0;
+    }
+    .dining-alert-copy{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      min-width:0;
+    }
+    .dining-alert-icon{
+      flex:0 0 48px;
+      width:48px;
+      height:48px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      border:1px solid #f0cf82;
+      font-size:1.45rem;
+      box-shadow:0 5px 14px rgba(120,78,0,.08);
+    }
+    .dining-alert-title{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:9px;
+      margin:0 0 4px;
+      color:#753600;
+      font-weight:900;
+      font-size:1.08rem;
+    }
+    .dining-alert-tag{
+      display:inline-flex;
+      align-items:center;
+      padding:3px 9px;
+      border-radius:999px;
+      color:#fff;
+      background:#c94719;
+      font-size:.78rem;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+    .dining-alert p{
+      margin:0;
+      color:#664b25;
+      line-height:1.6;
+      font-size:.96rem;
+    }
+    .dining-alert-btn{
+      flex:0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 19px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#d95a22,#b83812);
+      color:#fff;
+      font-weight:900;
+      box-shadow:0 8px 18px rgba(174,62,20,.22);
+      white-space:nowrap;
+      transition:.2s;
+    }
+    .dining-alert-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(174,62,20,.28)}
+    @media(max-width:760px){
+      .dining-alert-inner{align-items:stretch;flex-direction:column;gap:12px;padding:14px 0 16px}
+      .dining-alert-btn{width:100%}
+      .dining-alert-icon{flex-basis:44px;width:44px;height:44px}
+    }
+
 </style>
 
   <!-- ===== NCFD2026 SEO ===== -->
@@ -436,6 +521,31 @@
       <div class="menu"><a href="#about">會議資訊</a><a href="#topics">徵稿主題</a><a href="#resources">投稿資源</a><a href="submission/auth.html">投稿專區</a><a href="registration/index.html">會議註冊</a><a href="#schedule">重要時程</a><a href="#agenda">暫定議程</a><a href="#venue">會場與旅遊</a><a href="#organizers">主辦單位</a></div>
     </div>
   </nav>
+
+  <aside class="dining-alert" aria-label="餐飲需求調查提醒">
+    <div class="dining-alert-inner">
+      <div class="dining-alert-copy">
+        <div class="dining-alert-icon" aria-hidden="true">🍽️</div>
+        <div>
+          <div class="dining-alert-title">
+            <span class="dining-alert-tag">重要提醒</span>
+            餐飲需求調查｜敬請儘速填寫
+          </div>
+          <p>
+            為精準掌握會議用餐人數、提升餐飲品質並避免食材浪費，
+            敬請預計參與 NCFD2026 的與會者儘速登記用餐需求與人數，謝謝您的配合。
+          </p>
+        </div>
+      </div>
+      <a class="dining-alert-btn"
+         href="https://forms.gle/X37kVywmKhx9d3Fz6"
+         target="_blank"
+         rel="noopener">
+        📝 立即填寫用餐需求表單 ↗
+      </a>
+    </div>
+  </aside>
+
 
   <header class="hero">
     <div class="container hero-inner">
