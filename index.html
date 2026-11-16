@@ -168,7 +168,7 @@
     /* ===== 投稿資源下載 ===== */
     .resource-grid {
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns:repeat(4,1fr);
       gap:18px;
       margin-top:18px;
     }
@@ -229,12 +229,77 @@
     }
     .submission-banner h3 {margin:0 0 6px;color:#fff;}
     .submission-banner p {margin:0;color:rgba(255,255,255,.88);}
-    @media(max-width:900px){
+    @media(max-width:1080px){
+      .resource-grid{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:720px){
       .resource-grid{grid-template-columns:1fr;}
       .submission-banner{display:block;}
       .submission-banner .btn{margin-top:16px;}
     }
 
+
+
+    /* ===== 暫定議程 ===== */
+    .agenda-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:22px;
+      margin-top:18px;
+    }
+    .agenda-day{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .agenda-day-title{
+      margin:0;
+      padding:18px 22px;
+      color:#fff;
+      font-size:1.25rem;
+      background:linear-gradient(135deg,var(--navy),var(--blue));
+    }
+    .agenda-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:.98rem;
+    }
+    .agenda-table th,
+    .agenda-table td{
+      padding:12px 15px;
+      text-align:left;
+      border-bottom:1px solid #e6eef7;
+      vertical-align:middle;
+    }
+    .agenda-table th{
+      color:var(--navy);
+      background:#f2f8fd;
+      font-weight:900;
+    }
+    .agenda-table tr:last-child td{border-bottom:0;}
+    .agenda-time{
+      white-space:nowrap;
+      width:38%;
+      color:#173f76;
+      font-weight:800;
+    }
+    .agenda-note{
+      margin-top:16px;
+      padding:13px 16px;
+      border-radius:14px;
+      background:#fff8e8;
+      border:1px solid #f6d889;
+      color:#6c5310;
+      font-size:.95rem;
+    }
+    #agenda{scroll-margin-top:84px;}
+    @media(max-width:900px){.agenda-grid{grid-template-columns:1fr;}}
+    @media(max-width:560px){
+      .agenda-table th,.agenda-table td{padding:10px 11px;font-size:.92rem;}
+      .agenda-time{width:42%;}
+    }
 
     .menu a[href="#resources"]{
       padding:8px 13px;
@@ -368,7 +433,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand"><strong>2026 全國計算流體力學會議</strong><span>National Computational Fluid Dynamics Conference</span></div>
-      <div class="menu"><a href="#about">會議資訊</a><a href="#topics">徵稿主題</a><a href="#resources">投稿資源</a><a href="submission/auth.html">投稿專區</a><a href="registration/index.html">會議註冊</a><a href="#schedule">重要時程</a><a href="#venue">會場與旅遊</a><a href="#organizers">主辦單位</a></div>
+      <div class="menu"><a href="#about">會議資訊</a><a href="#topics">徵稿主題</a><a href="#resources">投稿資源</a><a href="submission/auth.html">投稿專區</a><a href="registration/index.html">會議註冊</a><a href="#schedule">重要時程</a><a href="#agenda">暫定議程</a><a href="#venue">會場與旅遊</a><a href="#organizers">主辦單位</a></div>
     </div>
   </nav>
 
@@ -401,6 +466,7 @@
   <a class="btn btn-secondary" href="registration/index.html">🎫 會議註冊</a>
   <a class="btn btn-secondary" href="#resources">⬇ 下載投稿範本</a>
   <a class="btn btn-secondary" href="#schedule">查看重要時程</a>
+  <a class="btn btn-secondary" href="#agenda">🗓 查看暫定議程</a>
   <a class="btn btn-secondary" href="mailto:NCFD2026@proton.me?subject=NCFD2026%20%E6%9C%83%E8%AD%B0%E8%A9%A2%E5%95%8F">✉ 聯絡我們</a>
 </div>
       </div>
@@ -459,6 +525,15 @@
             <a class="download-btn" href="templates/NCFD2026_A1_Poster_Template.pptx" download>⬇ 下載 PPTX</a>
           </div>
         </div>
+
+        <div class="resource-card">
+          <div class="resource-icon">✍</div>
+          <h3>NCFD2026 授權同意書</h3>
+          <p>供發表者填寫之授權同意書 Word 樣板。請下載後完成填寫與簽署，並依主辦單位通知上傳。</p>
+          <div class="resource-actions">
+            <a class="download-btn" href="templates/NCFD2026_授權同意書.docx" download>⬇ 下載 DOCX</a>
+          </div>
+        </div>
       </div>
 
       <div class="submission-banner">
@@ -494,7 +569,7 @@
           <div class="topic-card"><h4>基礎與理論流體力學計算</h4><p>流體力學基本理論、黏性流與非黏性流計算、數值計算法則。</p></div>
           <div class="topic-card"><h4>數值方法與技術</h4><p>網格點生成法、平行運算、雲端計算與高效能計算（HPC）軟體發展。</p></div>
           <div class="topic-card"><h4>實驗與應用流體力學</h4><p>航太、機械、先進載具與氣候之關鍵流體技術。</p></div>
-          <div class="topic-card"><h4>跨域及產業應用研究</h4><p>其他先進科技發展與應用，例如：能源、電動車、電力電子、儲能、製程與先進結構等分析。</p></div>
+          <div class="topic-card"><h4>跨域及產業應用研究</h4><p>其他計算流體力學之應用，例如：能源、電子業、製程等分析。</p></div>
         </div>
       </div>
     </div>
@@ -550,6 +625,52 @@
         <div class="timeline-item"><div class="timeline-date">2026/11/27（五）</div><div>投稿截止・一般報名截止（<span class="price">4500元</span>／每篇稿件）</div></div>
         <div class="timeline-item"><div class="timeline-date">2026/12/11（五）</div><div>現場報名繳費（<span class="price">5000元</span>／每篇稿件）</div></div>
       </div></div>
+    </div>
+  </section>
+
+  <section id="agenda">
+    <div class="container">
+      <div style="display:inline-flex;align-items:center;gap:10px;padding:8px 14px;margin-bottom:10px;border-radius:999px;background:#0b2f6b;color:white;font-weight:800;">🗓 會議議程</div>
+      <h2 class="section-title">NCFD2026 暫定議程</h2>
+      <p class="section-desc">以下為目前暫定議程，實際時間與內容如有調整，將以會議網站最新公告為準。</p>
+
+      <div class="agenda-grid">
+        <div class="agenda-day">
+          <h3 class="agenda-day-title">2026/12/11（五）</h3>
+          <table class="agenda-table" aria-label="2026年12月11日暫定議程">
+            <thead><tr><th>時間</th><th>議程</th></tr></thead>
+            <tbody>
+              <tr><td class="agenda-time">14:00–14:10</td><td>開幕</td></tr>
+              <tr><td class="agenda-time">14:10–14:50</td><td>主題演講 1</td></tr>
+              <tr><td class="agenda-time">14:50–15:30</td><td>主題演講 2</td></tr>
+              <tr><td class="agenda-time">15:30–15:40</td><td>大合照</td></tr>
+              <tr><td class="agenda-time">15:40–16:00</td><td>茶敘（1）</td></tr>
+              <tr><td class="agenda-time">16:00–16:20</td><td>業界論壇 1</td></tr>
+              <tr><td class="agenda-time">16:20–16:40</td><td>業界論壇 2</td></tr>
+              <tr><td class="agenda-time">16:40–18:00</td><td>自由時間</td></tr>
+              <tr><td class="agenda-time">18:00–20:00</td><td>晚宴</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="agenda-day">
+          <h3 class="agenda-day-title">2026/12/12（六）</h3>
+          <table class="agenda-table" aria-label="2026年12月12日暫定議程">
+            <thead><tr><th>時間</th><th>議程</th></tr></thead>
+            <tbody>
+              <tr><td class="agenda-time">09:00–10:30</td><td>海報發表</td></tr>
+              <tr><td class="agenda-time">10:30–10:50</td><td>茶敘（2）</td></tr>
+              <tr><td class="agenda-time">10:50–12:00</td><td>海報發表</td></tr>
+              <tr><td class="agenda-time">12:00–13:00</td><td>午餐</td></tr>
+              <tr><td class="agenda-time">13:00–14:50</td><td>海報發表</td></tr>
+              <tr><td class="agenda-time">14:50–15:10</td><td>茶敘（3）</td></tr>
+              <tr><td class="agenda-time">15:10–15:30</td><td>閉幕</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="agenda-note"><strong>※ 暫定議程：</strong>實際議程、講者與時段如有異動，請以 NCFD2026 會議網站後續公告為準。</div>
     </div>
   </section>
 
