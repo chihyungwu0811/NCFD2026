@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded',async()=>{
     }catch{return ''}
   };
 
+  // registration_payments.registration_id is UNIQUE, so Supabase/PostgREST may
+  // embed the relation as a single object instead of an array. Normalize both.
+  const paymentOf=(registration)=>{
+    const rel=registration?.registration_payments;
+    if(Array.isArray(rel))return rel[0]||null;
+    return rel&&typeof rel==='object'?rel:null;
+  };
+
   async function load(){
     const [regRes,setRes]=await Promise.all([
       REG.db.from('registrations')
@@ -58,7 +66,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     const status=REG.el('#status-filter').value;
 
     regs=regs.filter(r=>{
-      const p=(r.registration_payments||[])[0];
+      const p=paymentOf(r);
       const hay=[
         r.registration_number,r.name_zh,r.email,r.affiliation,
         r.submissions?.submission_number,r.submissions?.title_zh,r.submissions?.title_en,
@@ -68,7 +76,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     });
 
     REG.el('#rows').innerHTML=regs.map(r=>{
-      const p=(r.registration_payments||[])[0];
+      const p=paymentOf(r);
 
       const proof=p
         ? `<button class="btn btn-outline btn-sm" data-proof="${REG.escape(p.proof_path)}">查看證明</button>`
@@ -205,7 +213,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     ];
 
     const values=rows.map(r=>{
-      const p=(r.registration_payments||[])[0]||{};
+      const p=paymentOf(r)||{};
       const flat={
         ...r,
         submission_number:r.submissions?.submission_number||'',
