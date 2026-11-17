@@ -527,6 +527,150 @@
       .topic-motion-wrap .cfd-motion{max-width:420px;width:100%;margin-inline:auto;}
     }
 
+
+    /* ===== Nearby lodging recommendations ===== */
+    .lodging-section{padding-top:38px}
+    .lodging-intro{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:18px;
+      margin-bottom:20px
+    }
+    .lodging-note{
+      flex:0 0 auto;max-width:420px;padding:12px 14px;border-radius:15px;
+      background:#fff8e8;border:1px solid #f0d28b;color:#77551d;font-size:.9rem;line-height:1.6
+    }
+    .lodging-grid{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px
+    }
+    .lodging-card{
+      background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;
+      box-shadow:0 9px 24px rgba(12,53,110,.08);display:flex;flex-direction:column;gap:12px
+    }
+    .lodging-card.featured{grid-column:span 2;background:linear-gradient(135deg,#ffffff,#f1f9ff)}
+    .lodging-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .lodging-card h3{margin:0;color:var(--navy);font-size:1.2rem;line-height:1.4}
+    .lodging-area{color:var(--blue);font-size:.9rem;font-weight:800;margin-top:3px}
+    .lodging-badges{display:flex;flex-wrap:wrap;gap:7px}
+    .lodging-badge{
+      display:inline-flex;padding:5px 9px;border-radius:999px;background:#eaf6ff;
+      border:1px solid #cfe8fb;color:#14568b;font-size:.78rem;font-weight:800
+    }
+    .lodging-card p{margin:0;color:var(--muted);line-height:1.65}
+    .lodging-meta{display:grid;gap:8px;font-size:.92rem}
+    .lodging-meta div{display:flex;gap:8px;align-items:flex-start}
+    .lodging-meta strong{color:var(--text);white-space:nowrap}
+    .lodging-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:auto;padding-top:4px}
+    .lodging-link{
+      display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;
+      border-radius:999px;background:#eef7ff;border:1px solid #cfe5f7;
+      color:#0b4f93;font-weight:800;font-size:.88rem;transition:.2s
+    }
+    .lodging-link:hover{transform:translateY(-1px);background:#e1f2ff}
+    .lodging-disclaimer{
+      margin-top:18px;padding:15px 17px;border-radius:16px;background:#f8fbff;
+      border:1px dashed #bfd7ed;color:var(--muted);font-size:.9rem
+    }
+    @media(max-width:860px){
+      .lodging-intro{flex-direction:column}
+      .lodging-note{max-width:none;width:100%}
+      .lodging-grid{grid-template-columns:1fr}
+      .lodging-card.featured{grid-column:auto}
+    }
+
+
+    /* ===== Conference organization ===== */
+    .committee-wrap{display:grid;gap:20px}
+    .committee-card{
+      background:#fff;border:1px solid var(--line);border-radius:20px;
+      padding:22px;box-shadow:0 9px 24px rgba(12,53,110,.08)
+    }
+    .committee-card h3{margin:0 0 15px;color:var(--navy);font-size:1.25rem}
+    .committee-table-wrap{overflow-x:auto;border-radius:14px;border:1px solid #e2edf7}
+    .committee-table{width:100%;border-collapse:collapse;min-width:720px;background:#fff}
+    .committee-table th,.committee-table td{
+      padding:12px 14px;border-bottom:1px solid #e8f0f7;text-align:left;vertical-align:top
+    }
+    .committee-table th{background:#eef7ff;color:var(--navy);font-weight:900}
+    .committee-table tr:last-child td{border-bottom:0}
+    .committee-name{font-weight:900;color:#143e77;white-space:nowrap}
+    .advisory-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
+    .advisory-chip{
+      display:inline-flex;align-items:center;padding:7px 11px;border-radius:999px;
+      background:linear-gradient(135deg,#f5fbff,#e9f5ff);
+      border:1px solid #d3e7f7;color:#194e86;font-weight:700;font-size:.9rem
+    }
+    .committee-note{margin:12px 0 0;color:var(--muted);font-size:.88rem}
+
+    /* ===== Sponsors ===== */
+    .sponsor-intro{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px
+    }
+    .sponsor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .sponsor-card{
+      position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);
+      border-radius:22px;padding:24px;box-shadow:0 10px 26px rgba(12,53,110,.09)
+    }
+    .sponsor-card:before{
+      content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+      background:linear-gradient(180deg,#0b5eaa,#19b7c9)
+    }
+    .sponsor-mark{
+      width:56px;height:56px;border-radius:17px;display:grid;place-items:center;
+      background:linear-gradient(135deg,#e8f5ff,#dff8fb);color:var(--navy);
+      font-weight:900;font-size:1.15rem;border:1px solid #cfe7f5;margin-bottom:16px
+    }
+    .sponsor-card h3{margin:0 0 8px;color:var(--navy);font-size:1.2rem}
+    .sponsor-card p{margin:0 0 16px;color:var(--muted)}
+    .sponsor-link{
+      display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;
+      border-radius:999px;background:linear-gradient(135deg,#0d5aaa,#1178bf);
+      color:#fff;font-weight:900;font-size:.9rem;box-shadow:0 7px 16px rgba(13,90,170,.18)
+    }
+    .sponsor-link:hover{transform:translateY(-1px)}
+    .sponsor-status{
+      padding:9px 13px;border-radius:999px;background:#eef8ff;border:1px solid #d4e9f8;
+      color:#336486;font-size:.86rem;white-space:nowrap
+    }
+    @media(max-width:820px){
+      .sponsor-intro{flex-direction:column}
+      .sponsor-grid{grid-template-columns:1fr}
+      .committee-table{min-width:660px}
+    }
+
+
+    /* ===== Banquet venue ===== */
+    .banquet-card{
+      margin-top:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:17px 19px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#fff8e8,#fff2cf);
+      border:1px solid #efd18b;
+      box-shadow:0 8px 20px rgba(120,78,0,.08);
+    }
+    .banquet-card h4{margin:0 0 5px;color:#7a4100;font-size:1.05rem}
+    .banquet-card p{margin:0;color:#6d5832;font-size:.92rem;line-height:1.55}
+    .banquet-map-btn{
+      flex:0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 15px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#c96a12,#a84c00);
+      color:#fff;
+      font-weight:900;
+      white-space:nowrap;
+      box-shadow:0 7px 16px rgba(168,76,0,.18);
+    }
+    .banquet-map-btn:hover{transform:translateY(-1px)}
+    @media(max-width:760px){
+      .banquet-card{flex-direction:column;align-items:stretch}
+      .banquet-map-btn{width:100%}
+    }
+
 </style>
 
   <!-- ===== NCFD2026 SEO ===== -->
@@ -577,7 +721,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand"><strong>2026 全國計算流體力學會議</strong><span>National Computational Fluid Dynamics Conference</span></div>
-      <div class="menu"><a href="#about">會議資訊</a><a href="#topics">徵稿主題</a><a href="#resources">投稿資源</a><a href="submission/auth.html">投稿專區</a><a href="registration/index.html">會議註冊</a><a href="#schedule">重要時程</a><a href="#agenda">暫定議程</a><a href="#venue">會場與旅遊</a><a href="#organizers">主辦／協辦單位</a></div>
+      <div class="menu"><a href="#about">會議資訊</a><a href="#topics">徵稿主題</a><a href="#resources">投稿資源</a><a href="submission/auth.html">投稿專區</a><a href="registration/index.html">會議註冊</a><a href="#schedule">重要時程</a><a href="#agenda">暫定議程</a><a href="#committee">會議組織</a><a href="#venue">會場與旅遊</a><a href="#lodging">住宿建議</a><a href="#organizers">主辦／協辦單位</a><a href="#sponsors">贊助廠商</a></div>
     </div>
   </nav>
 
@@ -837,10 +981,23 @@
               <tr><td class="agenda-time">16:00–16:20</td><td>業界論壇 1</td></tr>
               <tr><td class="agenda-time">16:20–16:40</td><td>業界論壇 2</td></tr>
               <tr><td class="agenda-time">16:40–18:00</td><td>自由時間</td></tr>
-              <tr><td class="agenda-time">18:00–20:00</td><td>晚宴</td></tr>
+              <tr><td class="agenda-time">18:00–20:00</td><td><strong>晚宴</strong>（餐廳位置與地址請見下方 Google Maps）</td></tr>
             </tbody>
           </table>
         </div>
+
+          <div class="banquet-card">
+            <div>
+              <h4>🍽️ 12/11 晚宴餐廳與地址</h4>
+              <p>晚宴餐廳位置與完整地址請以主辦單位提供的 Google Maps 地點資訊為準；點擊右側按鈕即可開啟導航與查看門牌。</p>
+            </div>
+            <a class="banquet-map-btn"
+               href="https://maps.app.goo.gl/gFJMET8mTXyqC1Vm7"
+               target="_blank"
+               rel="noopener noreferrer">
+              📍 開啟晚宴餐廳 Google Maps ↗
+            </a>
+          </div>
 
         <div class="agenda-day">
           <h3 class="agenda-day-title">2026/12/12（六）</h3>
@@ -863,6 +1020,55 @@
     </div>
   </section>
 
+
+  <section id="committee">
+    <div class="container">
+      <h2 class="section-title">會議組織</h2>
+      <p class="section-desc">NCFD2026 大會主席、籌備委員及諮議委員名單。</p>
+
+      <div class="committee-wrap">
+        <div class="committee-card">
+          <h3>大會主席</h3>
+          <div class="committee-table-wrap">
+            <table class="committee-table">
+              <thead><tr><th>職務</th><th>姓名</th><th>單位</th><th>職稱</th></tr></thead>
+              <tbody>
+                <tr><td>主席</td><td class="committee-name">袁曉峰</td><td>中華民國航空太空學會</td><td>理事長</td></tr>
+<tr><td>副主席</td><td class="committee-name">詹劭勲</td><td>國立成功大學航太系</td><td>系主任</td></tr>
+<tr><td>總幹事</td><td class="committee-name">吳志勇</td><td>國立成功大學航太系</td><td>教授/副系主任</td></tr>
+<tr><td>副總幹事</td><td class="committee-name">郭泰延</td><td>國立成功大學航太系</td><td>助理教授</td></tr>
+<tr><td>副總幹事</td><td class="committee-name">陳昱達</td><td>國立成功大學航太系</td><td>助理教授</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="committee-card">
+          <h3>籌備委員</h3>
+          <div class="committee-table-wrap">
+            <table class="committee-table">
+              <thead><tr><th>姓名</th><th>單位</th><th>職稱</th></tr></thead>
+              <tbody>
+                <tr><td class="committee-name">李約亨</td><td>國立成功大學航太系</td><td>特聘教授</td></tr>
+<tr><td class="committee-name">吳毓庭</td><td>國立成功大學工科系</td><td>副教授</td></tr>
+<tr><td class="committee-name">陳冠邦</td><td>國立成功大學航太系</td><td>副教授</td></tr>
+<tr><td class="committee-name">陳文立</td><td>國立成功大學航太系</td><td>教授</td></tr>
+<tr><td class="committee-name">黃捷楷</td><td>國立成功大學航太系</td><td>副教授</td></tr>
+<tr><td class="committee-name">葉思沂</td><td>國立成功大學航太系</td><td>副教授</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="committee-card">
+          <h3>諮議委員</h3>
+          <div class="advisory-list"><span class="advisory-chip">王怡仁</span><span class="advisory-chip">江支弘</span><span class="advisory-chip">余憲政</span><span class="advisory-chip">吳文忠</span><span class="advisory-chip">吳志勇</span><span class="advisory-chip">吳典黻</span><span class="advisory-chip">吳宗信</span><span class="advisory-chip">呂宗行</span><span class="advisory-chip">李彥宏</span><span class="advisory-chip">李約亨</span><span class="advisory-chip">杜旭純</span><span class="advisory-chip">林永裔</span><span class="advisory-chip">林育平</span><span class="advisory-chip">林俊良</span><span class="advisory-chip">郭正山</span><span class="advisory-chip">陳步偉</span><span class="advisory-chip">陳嘉男</span><span class="advisory-chip">陳慶耀</span><span class="advisory-chip">黃振鴻</span><span class="advisory-chip">楊瑞彬</span><span class="advisory-chip">葉俊良</span><span class="advisory-chip">趙怡欽</span><span class="advisory-chip">鄭藏勝</span><span class="advisory-chip">蕭富元</span><span class="advisory-chip">鍾光民</span></div>
+          <p class="committee-note">※ 依姓氏筆畫排序</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="venue">
     <div class="container leisure">
       <div class="beach-card">
@@ -877,7 +1083,142 @@
       <div class="cta-box">
         <h2>歡迎踴躍參與</h2>
         <p>共同分享研究成果、促進跨域合作，並在南台灣海岸的輕鬆氛圍中展開更深度的交流。</p>
-        <a class="btn btn-primary" href="#organizers">查看主辦／協辦單位</a>
+        <div class="actions"><a class="btn btn-primary" href="#lodging">🏨 查看住宿建議</a><a class="btn btn-secondary" href="#organizers">查看主辦／協辦單位</a></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="lodging" class="lodging-section">
+    <div class="container">
+      <div class="lodging-intro">
+        <div>
+          <h2 class="section-title">鄰近住宿建議</h2>
+          <p class="section-desc">依「鄰近海生館、團體住宿、親子同行與恆春生活機能」等不同需求，整理以下住宿選項供與會者規劃行程參考。</p>
+        </div>
+        <div class="lodging-note">
+          <strong>住宿提醒</strong><br>
+          以下資訊僅供行程規劃參考，並非 NCFD2026 指定或合作旅宿。實際房價、空房、訂房及取消條件，請以各住宿業者最新公告為準。
+        </div>
+      </div>
+
+      <div class="lodging-grid">
+        <article class="lodging-card">
+          <div class="lodging-head">
+            <div>
+              <h3>後灣發宅 FaHaus</h3>
+              <div class="lodging-area">📍 車城・後灣｜近海生館</div>
+            </div>
+          </div>
+          <div class="lodging-badges">
+            <span class="lodging-badge">近會場</span>
+            <span class="lodging-badge">設計旅宿</span>
+            <span class="lodging-badge">海景</span>
+          </div>
+          <p>位於後灣的清水模設計旅宿，環境安靜、靠近海生館，適合講者、貴賓、夫妻或希望以距離與住宿質感為優先的與會者。</p>
+          <div class="lodging-meta">
+            <div><strong>特色：</strong><span>小型精品旅宿、海灣景觀、清水模建築。</span></div>
+            <div><strong>適合：</strong><span>個人／夫妻／講者與貴賓。</span></div>
+          </div>
+          <div class="lodging-actions">
+            <a class="lodging-link" href="https://www.fa-haus.com/" target="_blank" rel="noopener">官方網站 ↗</a>
+          </div>
+        </article>
+
+        <article class="lodging-card">
+          <div class="lodging-head">
+            <div>
+              <h3>藍海晴天海景民宿</h3>
+              <div class="lodging-area">📍 車城・後灣｜海生館旁</div>
+            </div>
+          </div>
+          <div class="lodging-badges">
+            <span class="lodging-badge">近會場</span>
+            <span class="lodging-badge">海景民宿</span>
+            <span class="lodging-badge">雙人／家庭房</span>
+          </div>
+          <p>位於後灣、鄰近海生館，提供雙人、四人及六人等房型。適合希望早上快速前往會場，或想在會議期間享受安靜海灣氣氛的與會者。</p>
+          <div class="lodging-meta">
+            <div><strong>特色：</strong><span>海景、後灣聚落、距會場近。</span></div>
+            <div><strong>適合：</strong><span>一般與會者／家庭同行。</span></div>
+          </div>
+          <div class="lodging-actions">
+            <a class="lodging-link" href="https://www.hi360.com.tw/" target="_blank" rel="noopener">官方網站 ↗</a>
+          </div>
+        </article>
+
+        <article class="lodging-card featured">
+          <div class="lodging-head">
+            <div>
+              <h3>墾丁長灘休閒飯店</h3>
+              <div class="lodging-area">📍 車城・海口｜適合團體與攜眷</div>
+            </div>
+          </div>
+          <div class="lodging-badges">
+            <span class="lodging-badge">大型飯店</span>
+            <span class="lodging-badge">親子</span>
+            <span class="lodging-badge">餐廳</span>
+            <span class="lodging-badge">停車</span>
+          </div>
+          <p>位於車城海口一帶，飯店規模較大，具餐飲、休閒及親子設施，較適合多人住宿、家庭同行，或希望住宿機能完整的與會者。</p>
+          <div class="lodging-meta">
+            <div><strong>特色：</strong><span>較完整的飯店設施、餐飲與親子休閒空間。</span></div>
+            <div><strong>適合：</strong><span>團體／攜眷家庭／自駕與會者。</span></div>
+          </div>
+          <div class="lodging-actions">
+            <a class="lodging-link" href="https://rwd.ezhotel.cloud/kentinglongbeach" target="_blank" rel="noopener">飯店網站 ↗</a>
+          </div>
+        </article>
+
+        <article class="lodging-card">
+          <div class="lodging-head">
+            <div>
+              <h3>墾丁怡灣渡假酒店</h3>
+              <div class="lodging-area">📍 恆春鎮｜親子與大型住宿</div>
+            </div>
+          </div>
+          <div class="lodging-badges">
+            <span class="lodging-badge">大型飯店</span>
+            <span class="lodging-badge">親子設施</span>
+            <span class="lodging-badge">室內泳池</span>
+            <span class="lodging-badge">停車</span>
+          </div>
+          <p>位於恆春鎮，房間數較多，親子遊樂、室內泳池與停車等設施完整。適合攜眷、多人同行及希望兼顧會議與家庭旅遊的與會者。</p>
+          <div class="lodging-meta">
+            <div><strong>特色：</strong><span>親子遊樂設施豐富、房間數多、恆春生活機能便利。</span></div>
+            <div><strong>適合：</strong><span>家庭／團體／自駕與會者。</span></div>
+          </div>
+          <div class="lodging-actions">
+            <a class="lodging-link" href="https://www.grandbay-resort.com.tw/" target="_blank" rel="noopener">官方網站 ↗</a>
+          </div>
+        </article>
+
+        <article class="lodging-card">
+          <div class="lodging-head">
+            <div>
+              <h3>墾丁假期渡假飯店</h3>
+              <div class="lodging-area">📍 恆春鎮｜生活機能方便</div>
+            </div>
+          </div>
+          <div class="lodging-badges">
+            <span class="lodging-badge">恆春鎮區</span>
+            <span class="lodging-badge">餐廳</span>
+            <span class="lodging-badge">停車</span>
+            <span class="lodging-badge">會議空間</span>
+          </div>
+          <p>位於恆春外環道路一帶，前往鎮區用餐、採買與周邊景點較方便；提供雙人、三人、四人房型與多項飯店設施。</p>
+          <div class="lodging-meta">
+            <div><strong>特色：</strong><span>生活機能、餐飲選擇與交通便利性較佳。</span></div>
+            <div><strong>適合：</strong><span>一般與會者／團體／重視鎮區便利性者。</span></div>
+          </div>
+          <div class="lodging-actions">
+            <a class="lodging-link" href="https://www.kenting-holiday.com.tw/" target="_blank" rel="noopener">官方網站 ↗</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="lodging-disclaimer">
+        <strong>訂房建議：</strong>會議日期為 2026/12/11（五）– 12/12（六），週末及旅遊旺季房況可能變動，建議與會者確認行程後提早訂房。交通時間會因路況而異，請於入住前再次確認前往國立海洋生物博物館行政大樓國際會議廳的路線。
       </div>
     </div>
   </section>
@@ -923,6 +1264,35 @@
     </div>
   </section>
 
+
+  <section id="sponsors">
+    <div class="container">
+      <div class="sponsor-intro">
+        <div>
+          <h2 class="section-title">贊助廠商</h2>
+          <p class="section-desc">感謝企業夥伴支持 NCFD2026 學術交流與產學合作。贊助名單將依實際確認情形持續更新。</p>
+        </div>
+        <div class="sponsor-status">目前贊助廠商：2 家</div>
+      </div>
+
+      <div class="sponsor-grid">
+        <article class="sponsor-card">
+          <div class="sponsor-mark" aria-hidden="true">OITC</div>
+          <h3>大塚資訊科技股份有限公司</h3>
+          <p>NCFD2026 贊助廠商</p>
+          <a class="sponsor-link" href="https://www.oitc.com.tw/" target="_blank" rel="noopener noreferrer">前往官方網站 ↗</a>
+        </article>
+
+        <article class="sponsor-card">
+          <div class="sponsor-mark" aria-hidden="true">CADMEN</div>
+          <h3>虎門科技股份有限公司</h3>
+          <p>NCFD2026 贊助廠商</p>
+          <a class="sponsor-link" href="https://www.cadmen.com/" target="_blank" rel="noopener noreferrer">前往官方網站 ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -933,7 +1303,8 @@
   <div class="footer-small">
     主辦：中華民國航空太空學會<br>
     主辦：國立成功大學航空太空工程學系<br>
-    協辦：國立海洋生物博物館<br><br>
+    協辦：國立海洋生物博物館<br>
+    贊助：大塚資訊科技股份有限公司、虎門科技股份有限公司<br><br>
     聯絡信箱：<a href="mailto:NCFD2026@proton.me" style="color:#9ee7ff;text-decoration:underline;">NCFD2026@proton.me</a>
   </div>
 </div>
