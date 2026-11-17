@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', async()=>{
   const gate=await NCFD.requireRole(['admin','chair']); if(!gate) return;
   const body=NCFD.el('#admin-submission-body'); let rows=[];
 
+  async function sendAcceptanceNotification(submissionId){
+    try{
+      const {data,error}=await NCFD.db.functions.invoke('send-status-notification',{
+        body:{event:'submission_accepted',submission_id:submissionId}
+      });
+      if(error)return {ok:false,message:error.message||'Edge Function 呼叫失敗'};
+      if(data?.error)return {ok:false,message:data.error};
+      return {ok:true,sent:Number(data?.sent||0)};
+    }catch(e){
+      return {ok:false,message:e?.message||String(e)}
+    }
+  }
+
   async function loadSettings(){
     const {data,error}=await NCFD.db.from('conference_settings').select('*').eq('id',1).single();
     if(error) return NCFD.toast('讀取設定失敗：'+error.message,'error');
@@ -41,8 +54,21 @@ document.addEventListener('DOMContentLoaded', async()=>{
       tr.querySelector('[data-apply]').addEventListener('click',async()=>{
         const status=tr.querySelector('[data-decision]').value;if(!status)return;
         if(!confirm(`確定將 ${s.submission_number} 狀態改為「${NCFD.statusLabels[status]||status}」？`))return;
+        const previousStatus=s.status;
         const {error}=await NCFD.db.rpc('set_submission_status',{p_submission_id:s.id,p_status:status});
-        if(error)return NCFD.toast('狀態更新失敗：'+error.message,'error'); NCFD.toast('投稿狀態已更新。','success');loadSubmissions();
+        if(error)return NCFD.toast('狀態更新失敗：'+error.message,'error');
+
+        if(status==='accepted'&&previousStatus!=='accepted'){
+          const mail=await sendAcceptanceNotification(s.id);
+          if(!mail.ok){
+            NCFD.toast('投稿已改為錄取，但 Email 通知寄送失敗：'+mail.message,'warn');
+          }else{
+            NCFD.toast(`投稿已改為錄取，錄取通知已寄出${mail.sent?`（${mail.sent} 封）`:''}。`,'success');
+          }
+        }else{
+          NCFD.toast('投稿狀態已更新。','success');
+        }
+        loadSubmissions();
       });
     }
   }

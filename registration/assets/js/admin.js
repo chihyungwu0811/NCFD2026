@@ -11,6 +11,19 @@ document.addEventListener('DOMContentLoaded',async()=>{
     }catch{return ''}
   };
 
+  async function sendPaymentStatusNotification(registrationId){
+    try{
+      const {data,error}=await REG.db.functions.invoke('send-status-notification',{
+        body:{event:'registration_payment_status_changed',registration_id:registrationId}
+      });
+      if(error)return {ok:false,message:error.message||'Edge Function 呼叫失敗'};
+      if(data?.error)return {ok:false,message:data.error};
+      return {ok:true,sent:Number(data?.sent||0)};
+    }catch(e){
+      return {ok:false,message:e?.message||String(e)}
+    }
+  }
+
   async function load(){
     const [regRes,setRes]=await Promise.all([
       REG.db.from('registrations')
@@ -129,10 +142,25 @@ document.addEventListener('DOMContentLoaded',async()=>{
     REG.els('[data-reupload]').forEach(b=>b.addEventListener('click',()=>review(b.dataset.reupload,'reupload_required')));
     REG.els('[data-reg-apply]').forEach(b=>b.addEventListener('click',async()=>{
       const tr=b.closest('tr'), status=tr.querySelector('[data-reg-status]').value;
+      const registrationId=b.dataset.regApply;
+      const current=(window._regs||[]).find(x=>x.id===registrationId);
       if(!confirm(`確定將此註冊狀態改為「${REG.statusLabels[status]||status}」？`))return;
       const note=prompt('管理員備註（可留空）：',''); if(note===null)return;
-      const {error}=await REG.db.rpc('admin_set_registration_status',{p_registration_id:b.dataset.regApply,p_status:status,p_note:note.trim()});
-      if(error)return REG.toast('狀態更新失敗：'+error.message,'error'); REG.toast('註冊狀態已更新。','success'); await load();
+      const {error}=await REG.db.rpc('admin_set_registration_status',{p_registration_id:registrationId,p_status:status,p_note:note.trim()});
+      if(error)return REG.toast('狀態更新失敗：'+error.message,'error');
+
+      const paymentStatuses=['payment_submitted','paid','reupload_required'];
+      if(paymentStatuses.includes(status)&&current?.status!==status){
+        const mail=await sendPaymentStatusNotification(registrationId);
+        if(!mail.ok){
+          REG.toast('註冊／付款狀態已更新，但 Email 通知寄送失敗：'+mail.message,'warn');
+        }else{
+          REG.toast('註冊／付款狀態已更新，Email 通知已寄出。','success');
+        }
+      }else{
+        REG.toast('註冊狀態已更新。','success');
+      }
+      await load();
     }))
   }
 
@@ -149,7 +177,13 @@ document.addEventListener('DOMContentLoaded',async()=>{
       p_registration_id:id,p_decision:decision,p_review_note:note
     });
     if(error)return REG.toast('審核失敗：'+error.message,'error');
-    REG.toast('付款狀態已更新。','success');
+
+    const mail=await sendPaymentStatusNotification(id);
+    if(!mail.ok){
+      REG.toast('付款狀態已更新，但 Email 通知寄送失敗：'+mail.message,'warn');
+    }else{
+      REG.toast('付款狀態已更新，Email 通知已寄出。','success');
+    }
     await load()
   }
 
