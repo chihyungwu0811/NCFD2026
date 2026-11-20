@@ -469,6 +469,147 @@
     }
 
 
+    /* ===== Activity survey alert ===== */
+    .activity-alert{
+      position:relative;
+      z-index:19;
+      background:linear-gradient(90deg,#eaf8ff 0%,#e6fbf8 52%,#dff4ef 100%);
+      border-bottom:1px solid #9fd8cf;
+      box-shadow:0 8px 20px rgba(0,86,103,.08);
+    }
+    .activity-alert-inner{
+      width:min(var(--maxw),calc(100% - 32px));
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);
+      align-items:center;
+      gap:18px;
+      padding:18px 0;
+    }
+    .activity-alert-copy{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      min-width:0;
+    }
+    .activity-alert-icon{
+      flex:0 0 48px;
+      width:48px;
+      height:48px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      border:1px solid #a8ddd5;
+      font-size:1.42rem;
+      box-shadow:0 5px 14px rgba(0,86,103,.10);
+    }
+    .activity-alert-title{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:9px;
+      margin:0 0 5px;
+      color:#0c5e66;
+      font-weight:900;
+      font-size:1.08rem;
+    }
+    .activity-alert-tag{
+      display:inline-flex;
+      align-items:center;
+      padding:3px 9px;
+      border-radius:999px;
+      color:#fff;
+      background:#178b7d;
+      font-size:.78rem;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+    .activity-alert p{
+      margin:0;
+      color:#305a5f;
+      line-height:1.65;
+      font-size:.96rem;
+    }
+    .activity-alert-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+    }
+    .activity-alert-meta span{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.78);
+      border:1px solid #b8e6dd;
+      color:#0e6770;
+      font-size:.9rem;
+      font-weight:700;
+    }
+    .activity-alert-actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .activity-alert-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 19px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#0c9fa0,#1470ba);
+      color:#fff;
+      font-weight:900;
+      box-shadow:0 8px 18px rgba(16,118,157,.22);
+      white-space:nowrap;
+      transition:.2s;
+    }
+    .activity-alert-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(16,118,157,.28)}
+    .activity-alert-note{
+      color:#3b6468;
+      font-size:.9rem;
+      font-weight:700;
+    }
+    .activity-alert-figure{
+      margin:0;
+      background:rgba(255,255,255,.62);
+      border:1px solid #b9e8de;
+      border-radius:20px;
+      padding:12px;
+      box-shadow:0 10px 24px rgba(8,88,97,.10);
+    }
+    .activity-alert-figure img{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:14px;
+      object-fit:cover;
+      aspect-ratio:4/3;
+      background:#f5fbfb;
+    }
+    .activity-alert-figure figcaption{
+      margin-top:9px;
+      color:#326269;
+      font-size:.9rem;
+      line-height:1.55;
+    }
+    @media(max-width:980px){
+      .activity-alert-inner{grid-template-columns:1fr;gap:14px}
+    }
+    @media(max-width:760px){
+      .activity-alert-inner{padding:15px 0 18px}
+      .activity-alert-copy{gap:12px}
+      .activity-alert-icon{flex-basis:44px;width:44px;height:44px}
+      .activity-alert-actions{flex-direction:column;align-items:stretch}
+      .activity-alert-btn{width:100%}
+    }
+
+
     /* ===== CFD animated flow visualizations ===== */
     .cfd-motion{
       margin-top:18px;
@@ -823,6 +964,48 @@
          rel="noopener">
         📝 立即填寫用餐需求表單 ↗
       </a>
+    </div>
+  </aside>
+
+  <aside class="activity-alert" aria-label="活動參與調查提醒">
+    <div class="activity-alert-inner">
+      <div>
+        <div class="activity-alert-copy">
+          <div class="activity-alert-icon" aria-hidden="true">📋</div>
+          <div>
+            <div class="activity-alert-title">
+              <span class="activity-alert-tag">活動調查</span>
+              休閒活動參與意願｜敬請填寫
+            </div>
+            <p>
+              為便於安排活動內容與掌握實際參與人數，敬請預計參加者填寫活動調查表。
+              本活動預定於 <strong>2026/12/12（六）10:00–12:00</strong> 舉行，
+              歡迎有興趣的與會者先行登記。
+            </p>
+            <div class="activity-alert-meta">
+              <span>📅 2026/12/12（六）</span>
+              <span>⏰ 10:00–12:00</span>
+              <span>📍 海生館園區體驗活動</span>
+            </div>
+            <div class="activity-alert-actions">
+              <a class="activity-alert-btn"
+                 href="https://forms.gle/1CZ9mHcBjk4rMhhAA"
+                 target="_blank"
+                 rel="noopener">
+                📝 立即填寫活動調查表單 ↗
+              </a>
+              <span class="activity-alert-note">內容包含水族實驗中心、珊瑚農場、仙后水母觀察區與珊瑚水桌等介紹。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figure class="activity-alert-figure">
+        <img src="assets/img/activity_aquarium_intro.jpg" alt="海生館活動介紹照片，包含水族實驗中心、珊瑚農場、仙后水母觀察區與珊瑚水桌。">
+        <figcaption>
+          活動介紹照片：國立海洋生物博物館水族實驗中心與相關展示內容，
+          可作為 12/12 活動時段之參考。
+        </figcaption>
+      </figure>
     </div>
   </aside>
 
